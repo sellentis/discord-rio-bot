@@ -3,7 +3,7 @@ const axios = require('axios').default;
 require('dotenv').config()
 
 const token = process.env.DISCORDJS_BOT_TOKEN
-const prefix = '$'
+const prefix = '-'
 
 const client = new Client({
   allowedMentions: {
@@ -20,13 +20,13 @@ client.on('ready', () => {
   console.log("Bot is online!");
 })
 
-client.on('message', (message) => {
+client.on('messageCreate', (message) => {
   if (!message.content.startsWith(prefix) || message.author.bot) return;
 
   const args = message.content.slice(prefix.length).split(/ +/)
   const command = args.shift().toLowerCase()
   if (command === 'help') {
-    message.channel.send(`Я пока умею только чекать рио персонажей на ревущем фьорде, для этого отправь '${prefix}rio Имя_персонажа'`)
+    message.reply(`Я пока умею только чекать рио персонажей на ревущем фьорде, для этого отправь '${prefix}rio Имя_персонажа'`)
   }
   if (command === 'rio') {
     axios.get('https://raider.io/api/v1/characters/profile', {
