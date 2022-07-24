@@ -40,14 +40,14 @@ client.on('messageCreate', (message) => {
       .then(function (response) {
         const rio = response.data.mythic_plus_scores.all
         if (rio > 0) {
-          message.channel.send("Твое рио: " + String(rio))
+          message.reply("Твое рио: " + String(rio))
         } else {
-          message.channel.send("Такое чувство, что твоя подписка не оплачена в этом сезоне")
+          message.reply("Такое чувство, что твоя подписка не оплачена в этом сезоне")
         }
       })
       .catch(function (error) {
         messageText = error.response.data.message
-        message.channel.send(messageText)
+        message.reply(messageText)
       })
       .then(function () {
         // always executed
